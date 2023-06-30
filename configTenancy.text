@@ -1,0 +1,7 @@
+php artisan migrate:refresh --path=database/migrations/landlord --database=landlord --seed
+php artisan "--database=landlord --seed"
+php artisan tenants:artisan "migrate --database=tenant --seed"
+
+php artisan tenants:artisan "migrate --path=database/migrations/tenant --database=tenant"
+php artisan tenants:artisan "migrate --database=tenant --seed"
+php artisan tenants:artisan "migrate:refresh --path=database/migrations/tenant --database=tenant --seed"

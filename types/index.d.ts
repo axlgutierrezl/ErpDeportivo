@@ -1,0 +1,1 @@
+declare module "resources/js/Components/LandLord/Partials/SidebarLeft.vue"

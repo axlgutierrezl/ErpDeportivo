@@ -1,0 +1,1 @@
+const o=(e,r,a=!1,m="PE")=>new Intl.NumberFormat(t(m).format,{currency:t(m).moneda,minimumFractionDigits:r,maximumFractionDigits:r,style:a?"currency":void 0}).format(isNaN(Number(e))?0:Number(e)).replace(",","");function t(e){switch(e){case"PE":return{format:"es-PE",moneda:"PEN"};case"US":return{format:"en-US",moneda:"USD"}}}export{o as F};
