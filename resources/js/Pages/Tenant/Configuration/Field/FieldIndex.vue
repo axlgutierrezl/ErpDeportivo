@@ -1,9 +1,9 @@
 <!-- CC1: CAMPOS -->
 <template>
-  <TenantLayout title="Deportes" titleBread="Listado de deportes">
+  <TenantLayout title="Campos" titleBread="Listado de Campos">
     <template #itemBreadCrumb>
       <v-breadcrumbs
-        :items="['Mantenimiento', 'Deportes', 'Lista']"
+        :items="['Configuración', 'Campos', 'Lista']"
         class="pa-0"
       ></v-breadcrumbs>
     </template>
@@ -49,6 +49,7 @@
             <tr>
               <th class="text-center">#</th>
               <th class="text-center">Nombre</th>
+              <th class="text-center">Deporte</th>
               <th class="text-center">Descripción</th>
               <th class="text-center">Fecha creación</th>
               <th class="text-center">Estado</th>
@@ -64,6 +65,7 @@
               >
                 <td class="text-center">{{ item.id }}</td>
                 <td class="text-center">{{ item.name }}</td>
+                <td class="text-center">{{ item.sport.name }}</td>
                 <td class="text-center">{{ item.description }}</td>
                 <td class="text-center">
                   {{ moment(item.created_at).format("DD/MM/YYYY HH:mm:ss") }}
@@ -109,14 +111,14 @@
             </template>
           </tbody>
         </v-table>
-        <Pagination v-if="sports" :paginate="sports" v-model:page="page" />
+        <Pagination v-if="fields" :paginate="fields" v-model:page="page" />
       </template>
     </CardView>
-    <SportAddEdit v-model:show="modal" @addUpdate="list" v-model:sport="form" />
-    <SportDelete
+    <FieldAddEdit v-model:show="modal" @addUpdate="list" v-model:field="form" />
+    <FiedlDelete
       v-model:show="modalDelete"
       @delete="list"
-      v-model:sport="form"
+      v-model:field="form"
     />
   </TenantLayout>
 </template>
@@ -124,8 +126,8 @@
 <script setup>
 import TenantLayout from "@/Layouts/TenantLayout.vue";
 import CardView from "@/Components/Tenant/CardView.vue";
-import SportDelete from "@/Components/Tenant/Maintenance/Sport/SportDelete.vue";
-import SportAddEdit from "@/Components/Tenant/Maintenance/Sport/SportAddEdit.vue";
+import FiedlDelete from "@/Components/Tenant/Configuration/Field/FieldDelete.vue";
+import FieldAddEdit from "@/Components/Tenant/Configuration/Field/FieldAddEdit.vue";
 import Pagination from "@/Components/Pagination.vue";
 import { onMounted, ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
@@ -133,7 +135,7 @@ import moment from "moment";
 
 const modal = ref(false);
 const modalDelete = ref(false);
-const $props = defineProps(["flash", "sports", "filters"]);
+const $props = defineProps(["flash", "fields", "filters"]);
 const data = ref([]);
 
 // DataTable
@@ -145,15 +147,17 @@ const form = ref({
   id: 0,
   name: "",
   description: "",
+  sport_id: null,
+  sport:"",
   state: null,
 });
 
 function list() {
   Inertia.reload({
-    only: ["sports"],
+    only: ["fields"],
     preserveState: true,
     onSuccess: () => {
-      data.value = $props.sports.data;
+      data.value = $props.fields.data;
       if ($props.filters.size) {
         size.value = Number($props.filters.size);
       }
@@ -197,18 +201,18 @@ watch(size, () => {
 
 function listPageSearching() {
   Inertia.get(
-    route("tenant.maintenance.sports.index"),
+    route("tenant.configuration.fields.index"),
     {
       page: page.value,
       search: search.value,
       size: size.value,
     },
     {
-      only: ["sports"],
+      only: ["fields"],
       preserveState: true,
       replace: true,
       onSuccess: () => {
-        data.value = $props.sports.data;
+        data.value = $props.fields.data;
       },
     }
   );
@@ -229,6 +233,8 @@ function openModal(action, data = {}) {
       form.value.id = data.id;
       form.value.name = data.name;
       form.value.description = data.description;
+      form.value.sport_id = data.sport.id;
+      form.value.sport = data.sport.name;
       form.value.state = data.state;
       break;
     }

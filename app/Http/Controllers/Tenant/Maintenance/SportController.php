@@ -15,12 +15,12 @@ class SportController extends Controller
     public function index()
     {
         return Inertia::render("Tenant/Maintenance/Sport/SportIndex", [
-            'sports' => Inertia::lazy(fn () => $this->List()),
+            'sports' => Inertia::lazy(fn () => $this->list()),
             'filters' => Request::only(['size', 'search', 'page'])
         ]);
     }
 
-    private function List()
+    private function list()
     {
         $size = Request::input('size');
         $sports = Sport::when(Request::input('search'), function ($query, $search) {
@@ -71,6 +71,7 @@ class SportController extends Controller
             ]);
         }
     }
+
     public function delete($id)
     {
         try {
@@ -87,5 +88,13 @@ class SportController extends Controller
                 "message" => $ex->getMessage(),
             ]);
         }
+    }
+
+    public function getSportsActive()
+    {
+        $sports = Sport::where('state', '=', '1')
+            ->orderBy('id', 'desc')
+            ->get();
+        return response()->json($sports);
     }
 }

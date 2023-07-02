@@ -18,6 +18,7 @@ use App\Http\Controllers\Tenant\Almacen\CategoriaController;
 use App\Http\Controllers\Tenant\Almacen\NotaSalidaController;
 use App\Http\Controllers\Tenant\Almacen\NotaIngresoController;
 use App\Http\Controllers\Tenant\Maintenance\SportController;
+use App\Http\Controllers\Tenant\Configuration\FieldController;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,15 +148,26 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         });
     });
 
-    /* CC1:CAMPOS - BEGIN */
+    /* CC1 Mantenimiento - BEGIN */
     Route::group(['prefix' => 'maintenance'], function () {
-
+        // Deporte
         Route::controller(SportController::class)->group(function () {
             Route::get("sports/index", 'index')->name("tenant.maintenance.sports.index");
             Route::post("sports/store", 'store')->name("tenant.maintenance.sports.store");
             Route::put("sports/update", 'update')->name("tenant.maintenance.sports.update");
             Route::put("sports/delete/{id}", 'delete')->name("tenant.maintenance.sports.delete");
+            Route::get("sports/active", 'getSportsActive')->name("tenant.maintenance.sports.active");
         });
     });
-    /* CC1:CAMPOS - END */
+    /* CC1 Mantenimiento - END */
+
+    Route::group(['prefix' => 'configuration'], function () {
+        // Campo
+        Route::controller(FieldController::class)->group(function () {
+            Route::get("fields/index", 'index')->name("tenant.configuration.fields.index");
+            Route::post("fields/store", 'store')->name("tenant.configuration.fields.store");
+            Route::put("fields/update", 'update')->name("tenant.configuration.fields.update");
+            Route::put("fields/delete/{id}", 'delete')->name("tenant.configuration.fields.delete");
+        });
+    });
 });

@@ -16,13 +16,10 @@ class ModuleLeverlSeeder extends Seeder
      */
     public function run()
     {
-        /** PARA MODULO ALQUILER CAMPOS */
-        ModuleLevel::create([
-            "descripcion" => "Campos",
-            "orden" => 1,
-            "module_id" => 2
-        ]);
+        // 7: CONFIGURACION
+        // 10: MANTENIMIENTO
 
+        
         /** PARA MODULO CAJAS */
         ModuleLevel::create([
             "descripcion" => "Cajas",
@@ -165,6 +162,13 @@ class ModuleLeverlSeeder extends Seeder
         /** MODULOS PARA TIENDA */
 
         /** CC1: CAMPOS - BEGIN */
+
+        ModuleLevel::create([
+            "descripcion" => "Campos",
+            "orden" => 1,
+            "module_id" => 7
+        ]);
+
         ModuleLevel::create([
             "descripcion" => "Deportes",
             "orden" => 1,
