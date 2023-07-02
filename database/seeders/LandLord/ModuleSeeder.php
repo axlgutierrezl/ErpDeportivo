@@ -16,48 +16,53 @@ class ModuleSeeder extends Seeder
     public function run()
     {
         Module::create([
-            "descripcion"=>"Panel de control",
-            "orden"=>1,
+            "descripcion" => "Panel de control",
+            "orden" => 1,
         ]);
 
         Module::create([
-            "descripcion"=>"Alquiler campo",
-            "orden"=>2,
+            "descripcion" => "Alquiler campo",
+            "orden" => 2,
         ]);
 
         Module::create([
-            "descripcion"=>"Cajas",
-            "orden"=>3,
+            "descripcion" => "Cajas",
+            "orden" => 3,
         ]);
 
         Module::create([
-            "descripcion"=>"Compras",
-            "orden"=>4,
+            "descripcion" => "Compras",
+            "orden" => 4,
         ]);
 
         Module::create([
-            "descripcion"=>"Ventas",
-            "orden"=>5,
+            "descripcion" => "Ventas",
+            "orden" => 5,
         ]);
 
         Module::create([
-            "descripcion"=>"Almacen",
-            "orden"=>6,
+            "descripcion" => "Almacen",
+            "orden" => 6,
         ]);
 
         Module::create([
-            "descripcion"=>"Configuración",
-            "orden"=>7,
+            "descripcion" => "Configuración",
+            "orden" => 7,
         ]);
 
         Module::create([
-            "descripcion"=>"Seguridad",
-            "orden"=>8,
+            "descripcion" => "Seguridad",
+            "orden" => 8,
         ]);
 
         Module::create([
-            "descripcion"=>"Tienda",
-            "orden"=>9,
+            "descripcion" => "Tienda",
+            "orden" => 9,
+        ]);
+
+        Module::create([
+            "descripcion" => "Mantenimiento",
+            "orden" => 10,
         ]);
     }
 }

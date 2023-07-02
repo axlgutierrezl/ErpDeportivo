@@ -1,1 +1,0 @@
-import{L as o}from"./LandLordLayout.31da9af3.js";import{c as t,o as e}from"./app.50683a97.js";import"./_plugin-vue_export-helper.cdc0426e.js";import"./VNavigationDrawer.8088819a.js";import"./index.4549214f.js";const s={__name:"Welcome",setup(r){return(a,c)=>(e(),t(o,{title:"Panel Control",titleBread:"Panel de control"}))}};export{s as default};

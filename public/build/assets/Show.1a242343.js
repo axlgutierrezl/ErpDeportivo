@@ -1,1 +1,0 @@
-import{T as t}from"./TenantLayout.4c67b316.js";import{c as o,o as e}from"./app.50683a97.js";import"./_plugin-vue_export-helper.cdc0426e.js";import"./VNavigationDrawer.8088819a.js";import"./index.4549214f.js";const s={__name:"Show",setup(r){return(a,n)=>(e(),o(t,{title:"Panel Control",titleBread:"Panel de control"}))}};export{s as default};

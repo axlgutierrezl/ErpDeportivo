@@ -33,6 +33,7 @@
         "@types/node": "^18.11.9",
         "@vue/server-renderer": "^3.2.43",
         "vite-plugin-vuetify": "^1.0.0",
+        "vue-moment": "^4.1.0",
         "vue-toastification": "^2.0.0-rc.5",
         "vuetify": "3.0.0",
         "webpack-node-externals": "^3.0.0"
